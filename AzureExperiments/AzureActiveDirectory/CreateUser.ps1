@@ -20,7 +20,7 @@ Connect-AzureAD -TenantId 9422eda6-5780-44fb-af2d-f3f330018410 -Confirm
 
 #User creation Section
 $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-$PasswordProfile.Password = "Password1$"
+$PasswordProfile.Password = "Password1$" 
 
 $Name = "AADUserAppAdmin"
 $DisplayName = "UserWithApplicationAdminRole"
@@ -53,6 +53,11 @@ Add-AzureADDirectoryRoleMember -ObjectId $role.ObjectId -RefObjectId $roleMember
 # Fetch role membership for role to confirm
 Get-AzureADDirectoryRoleMember -ObjectId $role.ObjectId | Get-AzureADUser
 
-
+##################################################################### Assign Subscription Grant Access through RBAC to the newly created user
+#Get Subscription id 
+Get-AzureRmSubscription
+#Grant Access
+##################################################################### Diretory Role Assignment Creation Section
+New-AzureRmRoleAssignment -SignInName "AADUserAppAdmin@AvanadeSubsAAD.onmicrosoft.com" -RoleDefinitionName "Contributor" -Scope /subscriptions/<<subscription id from Get_AzureRmSubscription>>
 
 
