@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace NileshIDP1ClientAppUI.Pages
 {
-    public class ProtectedModel : PageModel
+    [Authorize]
+    public class ProtectedInfoModel : PageModel
     {
         public void OnGet()
         {
